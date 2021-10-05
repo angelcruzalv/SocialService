@@ -1,0 +1,64 @@
+﻿@model IEnumerable<cecati_117.Areas.Admin.ClasesCompartidas.UsuariosConRoles>
+
+@{
+    ViewBag.Title = "Indice de usuarios";
+    
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Editar noticias <small>lista de noticias a mostrar</small></h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <a href="@Url.Action("Registro", "Cuentas")" class="btn btn-success">Agregar una cuenta de usuario</a>
+                <br />
+                <table class="table table-hover table-bordered dt-responsive nowrap" style="width:100%" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Username)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Role)
+                            </th>
+
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Username)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Role)
+                                </td>
+                                <td>
+                                    @*<a href="@Url.Action("Editar","Cuentas", new { id = item.UserId})" class="btn btn-info">Editar</a>*@
+                                    <a onclick="return confirm('¿Desea eliminar este registro?');" href="@Url.Action("BorrarUsuario","Cuentas", new { id = item.UserId})" class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>                
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
